@@ -2,8 +2,26 @@ import { View, StyleSheet, Text } from "react-native";
 import Input from "./Input";
 import Button from "../ui/Button";
 import { Colors } from "../../constants/Colors";
+import { useState } from "react";
 
 function Loginform() {
+  const [inputValues, setInputValues] = useState({
+    email: { value: "", isValid: true },
+    password: { value: "", isValid: true },
+  });
+
+  function inputChangedHandler(inputIdentifier, enterValue) {
+    setInputValues((curInputValues) => {
+      return {
+        ...curInputValues,
+        [inputIdentifier]: { value: enterValue, isValid: true },
+      };
+    });
+  }
+
+  const formIsValid =
+    !inputValues.email.isValid || !inputValues.password.isValid;
+
   function onPressHandler() {
     console.log("onPress is pressed");
   }
