@@ -1,11 +1,43 @@
-import { View, StyleSheet } from "react-native";
-import Loginform from "../components/Auth/CommonForm";
+import { View, StyleSheet, Alert } from "react-native";
+import Authenticationform from "../components/Auth/CommonForm";
 import { Colors } from "../constants/Colors";
+import { useState } from "react";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
+import { userLogin } from "../utils/auth";
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
+  const [isAthenticating, setIsAuthencating] = useState(false);
+
+  async function confirmHandler(userData) {
+    try {
+      setIsAuthencating(true);
+      console.log("SignUp Screen " + userData.email + " " + userData.password);
+      userLogin(userData.email, userData.password);
+    } catch (error) {
+      console.log("error = " + error);
+      alert(
+        "Authentication",
+        "Could not log you in. Please check your credentials or try again later!"
+      );
+    }
+    setIsAuthencating(false);
+  }
+
+  function newUserHandler() {
+    navigation.navigate("SignupScreen");
+  }
+
+  if (isAthenticating) {
+    return <LoadingOverlay message="Logging you in..." />;
+  }
+
   return (
     <View style={styles.container}>
-      <Loginform />
+      <Authenticationform
+        onSubmit={confirmHandler}
+        onNewUserClick={newUserHandler}
+        screen={"LoginScreen"}
+      />
     </View>
   );
 }

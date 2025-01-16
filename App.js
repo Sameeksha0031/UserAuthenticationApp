@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignupScreen from "./screens/SignupScreen";
 import { Colors } from "./constants/Colors";
+import WelcomeScreen from "./screens/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,12 +27,12 @@ export default function App() {
           <Stack.Screen
             name="SignupScreen"
             component={SignupScreen}
-            options={{ headerShown: false }}
+            options={{ headerShown: true }}
           />
           <Stack.Screen
             name="WelcomeScreen"
-            component={LoginScreen}
-            options={{ headerShown: false }}
+            component={WelcomeScreen}
+            options={{ headerShown: true }}
           />
         </Stack.Navigator>
       </NavigationContainer>

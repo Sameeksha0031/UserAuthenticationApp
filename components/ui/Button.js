@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Colors } from "../../constants/Colors";
 
-function Button({ style, onPress }) {
+function Button({ style, onPress, screen }) {
   return (
     <View style={style}>
       <Pressable
@@ -9,7 +9,7 @@ function Button({ style, onPress }) {
         onPress={onPress}
       >
         <View style={styles.container}>
-          <Text style={styles.buttonText}>LogIn</Text>
+          <Text style={styles.buttonText}>{screen ? "Sign Up" : "Log In"}</Text>
         </View>
       </Pressable>
     </View>

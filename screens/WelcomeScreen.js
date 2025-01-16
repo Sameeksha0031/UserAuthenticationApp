@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 
-function LoginScreen() {
+function WelcomeScreen() {
   return <Text>Inside Login Screen</Text>;
 }
 
-export default LoginScreen;
+export default WelcomeScreen;
